@@ -103,7 +103,9 @@ header {
 	display: none;
 }
 
-.side-bar {
+.sidebar {
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	padding: 30px;
 	width: 420px;
@@ -116,6 +118,7 @@ header {
 .items {
 	margin-bottom: 50px;
 	overflow: auto;
+	flex: 1;
 }
 
 h2 {
