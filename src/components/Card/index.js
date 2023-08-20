@@ -1,17 +1,21 @@
-function Card() {
+import styles from './Card.module.scss'
+
+console.log(styles);
+
+function Card(props) {
 	return (
-		<div className="card">
-			<div className="favorite">
+		<div className={styles.card}>
+			<div className={styles.favorite}>
 				<img src="/img/unliked.svg" alt="Unliked" />
 			</div>
-			<img src="img/sneakers/1.jpg" width={133} height={112} alt="Card" />
-			<p>Male sneakers Nike Blazer Mid Suede</p>
+			<img src={props.img} width={133} height={112} alt="Card" />
+			<p>{props.title}</p>
 			<div className="d-flex justify-between align-center">
 				<div className="d-flex flex-column">
 					<span>Price:</span>
-					<b>70€</b>
+					<b>{props.price}</b>
 				</div>
-				<button className="button">
+				<button className="button" onClick={props.showPrice}>
 					<img src="img/plus.svg" width={11} height={11} alt="Plus"></img>
 				</button>
 			</div>
