@@ -1,35 +1,35 @@
-function Sidebar() {
+function Sidebar({onClose, items = []}) {
 	return (
 		<div className="overlay">
 			<div className="sidebar">
 				<h2 className="d-flex justify-between mb-30">
 					Cart
-					<img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+					<img
+						className="removeBtn"
+						src="/img/btn-remove.svg"
+						alt="Close"
+						onClick={onClose}
+					/>
 				</h2>
 
 				<div className="items">
-					<div className="cartItem d-flex align-center mb-20">
-						<div
-							className="cartItemImg"
-							style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }}
-						></div>
-						<div className="mr-20 flex">
-							<p className="mb-5">Male sneakers Nike Air Max 270</p>
-							<b>70€</b>
+					{items.map((el) => (
+						<div className="cartItem d-flex align-center mb-20">
+							<div
+								className="cartItemImg"
+								style={{ backgroundImage: `url(${el.img})` }}
+							></div>
+							<div className="mr-20 flex">
+								<p className="mb-5">{el.title}</p>
+								<b>{el.price} €</b>
+							</div>
+							<img
+								className="removeBtn"
+								src="/img/btn-remove.svg"
+								alt="Remove"
+							/>
 						</div>
-						<img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-					</div>
-					<div className="cartItem d-flex align-center">
-						<div
-							className="cartItemImg"
-							style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }}
-						></div>
-						<div className="mr-20 flex">
-							<p className="mb-5">Male sneakers Nike Air Max 270</p>
-							<b>70€</b>
-						</div>
-						<img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-					</div>
+					))}
 				</div>
 
 				<div className="cartTotalBlock">

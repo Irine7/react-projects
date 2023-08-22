@@ -28,26 +28,26 @@ header {
 	}
 }
 
-.cotent {
+.content {
 	h1 {
 		margin: 0;
 	}
-}
-
-.button {
-	width: 33px;
-	height: 33px;
-	background: #fff;
-	border: 1px solid #f2f2f2;
-	border-radius: 7px;
-	box-sizing: border-box;
-	cursor: pointer;
 }
 
 .search-block {
 	padding: 0 15px;
 	border: 1px solid #f3f3f3;
 	border-radius: 10px;
+	position: relative;
+
+	.clear {
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		top: 10px;
+		right: 10px;
+		cursor: pointer;
+	}
 
 	input {
 		padding: 10px;
@@ -70,7 +70,7 @@ header {
 	height: 100%;
 	z-index: 1;
 	background-color: rgba(0, 0, 0, 0.5);
-	display: none;
+	// display: none;
 }
 
 .sidebar {
