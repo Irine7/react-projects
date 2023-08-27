@@ -1,3 +1,4 @@
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Card from '../components/Card';
 
@@ -9,7 +10,23 @@ function Home({
 	onChangeClearInput,
 	onAddToFavorite,
 	onAddToCart,
+	isLoading,
 }) {
+	const renderItems = () => {
+		const filteredItems = items.filter((el) =>
+			el.title.toLowerCase().includes(searchValue.toLowerCase())
+		);
+		return (isLoading ? [...Array(12)] : filteredItems).map((el) => (
+			<Card
+				key={uuidv4()}
+				addToCart={(obj) => onAddToCart(obj)}
+				addToFavorite={onAddToFavorite}
+				loading={isLoading}
+				{...el}
+			/>
+		));
+	};
+
 	return (
 		<div className="content p-40">
 			<div className="d-flex align-center mb-40 justify-between">
@@ -32,20 +49,7 @@ function Home({
 				</div>
 			</div>
 
-			<div className="d-flex flex-wrap justify-center">
-				{items
-					.filter((el) =>
-						el.title.toLowerCase().includes(searchValue.toLowerCase())
-					)
-					.map((el) => (
-						<Card
-							key={uuidv4()}
-							addToCart={(obj) => onAddToCart(obj)}
-							addToFavorite={onAddToFavorite}
-							{...el}
-						/>
-					))}
-			</div>
+			<div className="d-flex flex-wrap justify-center">{renderItems()}</div>
 		</div>
 	);
 }
