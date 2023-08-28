@@ -1,5 +1,6 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
+
 import AppContext from '../../context';
 import styles from './Card.module.scss';
 
@@ -46,12 +47,14 @@ function Card({
 				</ContentLoader>
 			) : (
 				<>
-					<div className={styles.favorite} onClick={onClickFavorite}>
-						<img
-							src={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'}
-							alt="Unliked"
-						/>
-					</div>
+					{addToFavorite && (
+						<div className={styles.favorite} onClick={onClickFavorite}>
+							<img
+								src={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'}
+								alt="Unliked"
+							/>
+						</div>
+					)}
 					<img src={img} width="100%" height={135} alt="Card" />
 					<p>{title}</p>
 					<div className="d-flex justify-between align-center">
@@ -59,12 +62,16 @@ function Card({
 							<span>Price:</span>
 							<b>{price}</b>
 						</div>
-						<img
-							className={styles.plus}
-							onClick={handleClick}
-							src={isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
-							alt="Plus"
-						/>
+						{addToCart && (
+							<img
+								className={styles.plus}
+								onClick={handleClick}
+								src={
+									isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'
+								}
+								alt="Plus"
+							/>
+						)}
 					</div>
 				</>
 			)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 import Card from '../components/Card';
 
 function Home({
@@ -16,11 +16,11 @@ function Home({
 		const filteredItems = items.filter((el) =>
 			el.title.toLowerCase().includes(searchValue.toLowerCase())
 		);
-		return (isLoading ? [...Array(12)] : filteredItems).map((el) => (
+		return (isLoading ? [...Array(12)] : filteredItems).map((el, index) => (
 			<Card
-				key={uuidv4()}
+				key={index}
+				addToFavorite={(obj) => onAddToFavorite(obj)}
 				addToCart={(obj) => onAddToCart(obj)}
-				addToFavorite={onAddToFavorite}
 				loading={isLoading}
 				{...el}
 			/>

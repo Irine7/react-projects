@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { useCart } from '../hooks/useCart';
 
 function Header(props) {
@@ -23,11 +24,13 @@ function Header(props) {
 				</li>
 				<li className="mr-20 cu-p">
 					<Link to="/favorites">
-						<img src="/img/heart.svg" width={17} height={17} alt="Favorites" />
+						<img src="/img/heart.svg" width={18} height={18} alt="Favorites" />
 					</Link>
 				</li>
 				<li>
-					<img src="/img/user.svg" width={17} height={17} alt="User" />
+					<Link to="/orders">
+						<img src="/img/user.svg" width={18} height={18} alt="User" />
+					</Link>
 				</li>
 			</ul>
 		</header>

@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Info from './components/Info';
-import { useCart } from './hooks/useCart';
+
+import Info from '../Info';
+import { useCart } from '../../hooks/useCart';
+
+import styles from './Sidebar.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Sidebar({ onClose, onRemove, items = [] }) {
+function Sidebar({ onClose, onRemove, items = [], opened }) {
 	const { addItem, setAddItem, totalSum } = useCart();
 	const [orderId, setOrderId] = React.useState(null);
 	const [isOrderCompleted, setIsOrderCompleted] = React.useState(false);
@@ -27,6 +29,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 
 			for (let i = 0; i < addItem.length; i++) {
 				const item = addItem[i];
+				console.log(item.id);
 				await axios.delete(
 					'https://64e34883bac46e480e78869c.mockapi.io/cart' + item.id
 				);
@@ -39,8 +42,8 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 	};
 
 	return (
-		<div className="overlay">
-			<div className="sidebar">
+		<div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+			<div className={styles.sidebar}>
 				<h2 className="d-flex justify-between mb-30">
 					Cart
 					<img
@@ -56,10 +59,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 					<div className="d-flex flex-column flex">
 						<div className="items">
 							{items.map((el) => (
-								<div
-									key={uuidv4()}
-									className="cartItem d-flex align-center mb-20"
-								>
+								<div key={el.id} className="cartItem d-flex align-center mb-20">
 									<div
 										className="cartItemImg"
 										style={{ backgroundImage: `url(${el.img})` }}
