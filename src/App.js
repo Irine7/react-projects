@@ -37,7 +37,6 @@ function App() {
 	}, []);
 
 	const onAddToCart = (obj) => {
-		console.log(obj);
 		{
 			/* Compare new item with the cart items and add it only if there is no the same one in the cart: */
 		}

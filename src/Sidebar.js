@@ -2,12 +2,12 @@ import axios from 'axios';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Info from './components/Info';
-import AppContext from './context';
+import { useCart } from './hooks/useCart';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Sidebar({ onClose, onRemove, items = [] }) {
-	const { addItem, setAddItem } = React.useContext(AppContext);
+	const { addItem, setAddItem, totalSum } = useCart();
 	const [orderId, setOrderId] = React.useState(null);
 	const [isOrderCompleted, setIsOrderCompleted] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
@@ -82,12 +82,12 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 								<li>
 									<span>In total:</span>
 									<div></div>
-									<b>140€</b>
+									<b>{totalSum}€</b>
 								</li>
 								<li>
 									<span>Tax:</span>
 									<div></div>
-									<b>7€</b>
+									<b>{totalSum * 0.05}€</b>
 								</li>
 							</ul>
 							<button
