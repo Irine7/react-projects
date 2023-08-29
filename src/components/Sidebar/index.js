@@ -57,7 +57,7 @@ function Sidebar({ onClose, onRemove, items = [], opened }) {
 				{/* Show items if there is at least one item added. Show the empty cart if there is nothing: */}
 				{items.length > 0 ? (
 					<div className="d-flex flex-column flex">
-						<div className="items">
+						<div className="items flex">
 							{items.map((el) => (
 								<div key={el.id} className="cartItem d-flex align-center mb-20">
 									<div
